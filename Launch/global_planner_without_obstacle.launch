@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="turtlebot3_nav_student" type="global_planner_without_obstacle.py" name="global_planner_no_obs" output="screen"/>
+</launch>
