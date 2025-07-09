@@ -39,7 +39,7 @@ def a_star(grid, start, goal):
         path.append(node)
         node = came_from.get(node)
         if node is None:
-            print("❌ No path found.")
+            print(" No path found.")
             return []
     path.append(start)
     path.reverse()
@@ -48,9 +48,9 @@ def a_star(grid, start, goal):
 def main():
     rospy.init_node('global_planner_with_obstacle')
 
-    print("⏳ Waiting for map...")
+    print(" Waiting for map...")
     msg = rospy.wait_for_message('/map', OccupancyGrid)
-    print("🗺️ Map received")
+    print("Map received")
 
     width = msg.info.width
     height = msg.info.height
@@ -58,11 +58,11 @@ def main():
     origin = msg.info.origin
     grid = np.array(msg.data).reshape((height, width))
 
-    # ✨ Set better start and goal in world coordinates
+    #  Set better start and goal in world coordinates
     start_world = (-2.0, -0.5)
     goal_world = (2.0, 0.5)
 
-    # ✅ Convert to grid coordinates
+    
     start = (
         int((start_world[1] - origin.position.y) / resolution),
         int((start_world[0] - origin.position.x) / resolution)
@@ -85,9 +85,9 @@ def main():
     save_path = "/home/va3803/catkin_ws/src/turtlebot3_nav_student/scripts/waypoints.npy"
     try:
         np.save(save_path, real_path)
-        print(f"✅ Waypoints saved to {save_path}")
+        print(f" Waypoints saved to {save_path}")
     except Exception as e:
-        print(f"❌ Failed to save file: {e}")
+        print(f" Failed to save file: {e}")
 
 if __name__ == '__main__':
     main()
